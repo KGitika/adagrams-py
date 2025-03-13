@@ -1,6 +1,7 @@
 from random import randint
 
 def draw_letters():
+    # adding a random comment for testing
     pass
 
 def uses_available_letters(word, letter_bank):
