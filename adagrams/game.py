@@ -43,10 +43,25 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letters_with_freq = {}
+    for letter in letter_bank:
+        letter = letter.lower()
+        if letter in letters_with_freq:
+            letters_with_freq[letter] += 1
+        else:
+            letters_with_freq[letter] = 1
+    for character in word:
+        character = character.lower()
+        if  character in letters_with_freq and letters_with_freq[character] != 0:
+            letters_with_freq[character] -= 1
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
+
+
