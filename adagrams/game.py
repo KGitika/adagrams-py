@@ -50,6 +50,7 @@ def uses_available_letters(word, letter_bank):
             letters_with_freq[letter] += 1
         else:
             letters_with_freq[letter] = 1
+            
     for character in word:
         character = character.lower()
         if  character in letters_with_freq and letters_with_freq[character] != 0:
@@ -105,17 +106,21 @@ def score_word(word):
 def get_highest_word_score(word_list):
     winning_word = []
     for word in word_list:
-        score = score_word(word)
+        word_score = score_word(word)
         word_length = len(word)
+
         if len(winning_word) == 0:
             winning_word.append(word)
-            winning_word.append(score)
+            winning_word.append(word_score)
         else:
-            if score > winning_word[1]:
+            winning_word_score = winning_word[1]
+            winning_word_length = len(winning_word[0])
+
+            if word_score > winning_word_score:
                 winning_word[0] = word
-                winning_word[1] = score
-            elif score == winning_word[1]:
-                if (len(word) < len(winning_word[0]) or word_length == 10) and len(winning_word[0]) != 10:
+                winning_word[1] = word_score
+            elif word_score == winning_word_score:
+                if (word_length < winning_word_length or word_length == 10) and winning_word_length != 10:
                     winning_word[0] = word
     return tuple(winning_word)
 
