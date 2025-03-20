@@ -84,7 +84,7 @@ def score_word(word):
         'K': 5, 
         'J': 8, 
         'X': 8, 
-        'q': 10, 
+        'Q': 10, 
         'Z': 10
     }
     score = 0
@@ -103,6 +103,20 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    winning_word = []
+    for word in word_list:
+        score = score_word(word)
+        word_length = len(word)
+        if len(winning_word) == 0:
+            winning_word.append(word)
+            winning_word.append(score)
+        else:
+            if score > winning_word[1]:
+                winning_word[0] = word
+                winning_word[1] = score
+            elif score == winning_word[1]:
+                if (len(word) < len(winning_word[0]) or word_length == 10) and len(winning_word[0]) != 10:
+                    winning_word[0] = word
+    return tuple(winning_word)
 
 
